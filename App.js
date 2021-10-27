@@ -9,32 +9,58 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 
 const Tab = createBottomTabNavigator();
 
+const screenName = {
+  home:"Home",
+  explore:"Explore",
+  profile:"Profile"
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ 
-        headerShown:false, 
-        tabBarActiveTintColor:"lightblue"
-      }}>
+      <Tab.Navigator
+        screenOptions={route =>
+          console.log(route.route.name) || {
+            headerShown: false,
+            tabBarActiveTintColor: 'lightblue',
+            tabBarIcon:({focused}) => {
+              const {name} = route.route
+
+              let icon = ""
+
+              if (name === screenName.home)
+              { icon="home-outline" }
+             
+              if (name === screenName.profile)
+              { icon="person"}
+
+              return (
+                <VectorIcons name={icon} size={24} focused={focused}/>
+              )
+              
+             
+            }
+          }
+        }>
         <Tab.Screen
           component={HomeScreen}
-          name="Home"
-          options={{ 
-            tabBarIcon: ({focused}) => (
+          name={screenName.home}
+          options={{
+            tabBarBadge:5,
+            tabBarBadgeStyle:{backgroundColor:"pink",color:"white"}
+           /*  tabBarIcon: ({focused}) => (
               <VectorIcons
                 name="home-outline"
                 size={24}
                 focused={focused}
                 focusedColor="lightblue"
-                
               />
-            ),
-            
+            ), */
           }}
         />
         <Tab.Screen
           component={ExploreScreen}
-          name="Explore"
+          name={screenName.explore}
           options={{
             tabBarIcon: ({focused}) => (
               <FontAwesome5
@@ -42,20 +68,16 @@ export default function App() {
                 size={24}
                 color={focused ? 'lightblue' : 'black'}
               />
-            ),
+            ), 
           }}
         />
         <Tab.Screen
           component={ProfileScreen}
-          name="Profile"
+          name={screenName.profile}
           options={{
-            tabBarIcon: ({focused}) => (
-              <VectorIcons
-                name="person"
-                size={24}
-                focused={focused}
-              />
-            ),
+            /* tabBarIcon: ({focused}) => (
+              <VectorIcons name="person" size={24} focused={focused} />
+            ), */
           }}
         />
       </Tab.Navigator>

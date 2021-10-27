@@ -19,12 +19,19 @@ export default function Icons({
     )
 }
 
-export function FontAwesome() {
+export function FontAwesome({
+    name,
+    size,
+    color="black",
+    focused,
+    focusedColor="lightblue"}) {
     return (
 <FontAwesome5
-                name={'wpexplorer'}
-                size={24}
-                color={focused ? '#6495ED' : 'black'}
+                name={name}
+                size={size}
+                focused={focused}
+                focusedColor={focusedColor}
+                color={ focused? focusedColor : color}
               />
     )
     
