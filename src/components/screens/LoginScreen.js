@@ -12,14 +12,14 @@ export default function LoginScreen() {
     }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white', height: 750}}>
       <Text
         style={{
-          color: 'black',
+          color: '#ffd2c9',
           fontSize: 45,
           margin: 15,
           textAlign: 'center',
-          letterSpacing: 3,
+          letterSpacing: 5,
         }}>
         Login Please
       </Text>
@@ -32,7 +32,7 @@ export default function LoginScreen() {
         }}
         containerStyle={{
           padding: 5,
-          backgroundColor: '#707ea9',
+          backgroundColor: '#B0C4DE',
           borderRadius: 10,
           width: 200,
           alignSelf: 'center',

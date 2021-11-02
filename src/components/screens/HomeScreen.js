@@ -13,7 +13,7 @@ export default function HomeScreen () {
 <SafeAreaView style={{backgroundColor: 'white', height: 750}}>
       <Text
         style={{
-          color: '#ffe2c9',
+          color: '#ffd2c9',
           fontSize: 45,
           margin: 15,
           textAlign: 'center',

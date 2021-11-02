@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView, Text } from 'react-native';
 
-export default function ExploreScreen () {
+export default function CartScreen () {
 
     return (
       <SafeAreaView style={{backgroundColor: 'white', height: 750}}>
@@ -13,7 +13,7 @@ export default function ExploreScreen () {
             textAlign: 'center',
             letterSpacing: 5,
         }}>
-         Explore World ! 
+            Cart Screen
       </Text>
 
      

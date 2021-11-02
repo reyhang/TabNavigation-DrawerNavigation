@@ -3,10 +3,10 @@ import { SafeAreaView, Text } from 'react-native';
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: 'white', height: 750}}>
       <Text
         style={{
-          color: 'black',
+          color: '#ffd2c9',
           fontSize: 45,
           margin: 15,
           textAlign: 'center',
