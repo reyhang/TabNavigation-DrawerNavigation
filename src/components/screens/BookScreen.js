@@ -10,8 +10,15 @@ export default function BookScreen() {
   const dispatch = useDispatch()
 
   const addItemToCart = item =>
-  
   dispatch({type: ADD_TO_CART, payload: item});
+
+   const addToCart =  (payload) => {
+    return (dispatch) =>{
+        dispatch({
+            type:ADD_TO_CART, 
+            payload})
+      }             
+    }
 
   function Seperator() {
     return <View style={{borderBottomWidth: 1, borderBottomColor: '#a9a9'}} />;
