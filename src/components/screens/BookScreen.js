@@ -1,9 +1,18 @@
 import React from 'react';
 import {View, StyleSheet, Text, FlatList, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
+import { ADD_TO_CART } from '../../redux/CartItems';
 import Books from '../../utils/Data';
 
 export default function BookScreen() {
+
+  const dispatch = useDispatch()
+
+  const addItemToCart = item =>
+  
+  dispatch({type: ADD_TO_CART, payload: item});
+
   function Seperator() {
     return <View style={{borderBottomWidth: 1, borderBottomColor: '#a9a9'}} />;
   }
@@ -25,7 +34,7 @@ export default function BookScreen() {
               <Text style={styles.authorText}> {item.author} </Text>
 
               <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => alert('Sepete Eklendi.')}>
+                <TouchableOpacity onPress={() => addItemToCart(item)}>
                   <Text style={styles.button}>Add to Cart</Text>
                 </TouchableOpacity>
               </View>
