@@ -1,24 +1,37 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import {View, StyleSheet, Text, FlatList, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
-import { ADD_TO_CART } from '../../redux/CartItems';
-import Books from '../../utils/Data';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TO_CART, FETCH_BOOK } from '../../redux/actionTypes';
+import {fetchBooks} from '../../redux/actions'
 export default function BookScreen() {
 
-  const dispatch = useDispatch()
+const dispatch = useDispatch()
 
-  const addItemToCart = item =>
+const addItemToCart = item =>
   dispatch({type: ADD_TO_CART, payload: item});
 
-   const addToCart =  (payload) => {
-    return (dispatch) =>{
-        dispatch({
-            type:ADD_TO_CART, 
-            payload})
-      }             
-    }
+const bookItems = useSelector(state => state.books)
+/* 
+async function fetchBooks () {
+  const response = await axios.get("https://example-data.draftbit.com/books?_limit=1")
+  try {
+    if (response?.data) {
+
+      dispatch({type:FETCH_BOOK, payload:response.data})
+    } else {
+      console.log("Response Hatası");
+    } }
+   catch (error) {
+    console.log(error); 
+  }} */
+
+  useEffect(() => {
+    dispatch(fetchBooks())
+
+  }, [])
+  
 
   function Seperator() {
     return <View style={{borderBottomWidth: 1, borderBottomColor: '#a9a9'}} />;
@@ -29,16 +42,16 @@ export default function BookScreen() {
       <Text style={styles.text}>Book Screen</Text>
       <FlatList
       showsVerticalScrollIndicator={false}
-        data={Books}
+        data={bookItems}
         keyExtractor={item => item.id.toString()}
         ItemSeparatorComponent={() => Seperator()}
         renderItem={({item}) => (
           <View style={styles.bookItemContainer}>
-            <Image source={item.img} style={styles.thumbnail} />
+            <Image source={{uri: item.image_url}} style={styles.thumbnail} />
 
             <View>
-              <Text style={styles.bookTitle}> {item.name} </Text>
-              <Text style={styles.authorText}> {item.author} </Text>
+              <Text style={styles.bookTitle}> {item.title} </Text>
+              <Text style={styles.authorText}> {item.authors} </Text>
 
               <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={() => addItemToCart(item)}>
@@ -104,4 +117,4 @@ const styles = StyleSheet.create({
     top: 110,
     left: 10,
   },
-});
+})

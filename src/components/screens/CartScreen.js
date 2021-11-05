@@ -10,16 +10,18 @@ import {
 
 import VectorIcons from '../Icons/Index';
 import {useDispatch, useSelector} from 'react-redux';
-import {REMOVE_FROM_CART} from '../../redux/CartItems';
+import {REMOVE_FROM_CART} from '../../redux/actionTypes';
 
 export default function CartScreen() {
 
   const dispatch = useDispatch();
-    
+ 
+  
 
-  const cartItems = useSelector(state => state);
+  const cartItems = useSelector(state => state.carts);
   /*Bir seçici işlevi kullanarak Redux depolama durumundan veri çıkarmanıza olanak tanır.*/
 
+   
 
   const removeFromCart = payload => {
     dispatch({type: REMOVE_FROM_CART, payload});
@@ -32,14 +34,16 @@ export default function CartScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>C A R T</Text>
-      {cartItems == 0 ? (
+      
+
+      {cartItems.length === 0 ? (
         <View
           style={{
             marginTop: 100,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-        <VectorIcons name={"cart"} size={100}  />
+          <VectorIcons name={'cart'} size={100} />
           <Text>Empty List</Text>
         </View>
       ) : (
@@ -50,11 +54,11 @@ export default function CartScreen() {
           ItemSeparatorComponent={() => Seperator()}
           renderItem={({item}) => (
             <View style={styles.bookItemContainer}>
-              <Image source={item.img} style={styles.thumbnail} />
+              <Image source={{uri: item.image_url}} style={styles.thumbnail} />
 
               <View>
-                <Text style={styles.bookTitle}> {item.name} </Text>
-                <Text style={styles.authorText}> {item.author} </Text>
+                <Text style={styles.bookTitle}> {item.title} </Text>
+                <Text style={styles.authorText}> {item.authors} </Text>
 
                 <View style={styles.buttonContainer}>
                   <TouchableOpacity onPress={() => removeFromCart(item)}>

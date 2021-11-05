@@ -9,9 +9,8 @@ function ShoppingCartIcon() {
 
     const navigation = useNavigation()
     
-    const cartItems = useSelector(state => state)
+    const cartItems = useSelector(state => state.carts)
 
-  
 
     return (
       <TouchableOpacity

@@ -1,7 +1,5 @@
-//Actions
+/* import {ADD_TO_CART,REMOVE_FROM_CART,REMOVE_ALL_CART,FETCH_BOOK} from "./actionTypes"
 
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 const initialState = [];
 
@@ -14,10 +12,20 @@ const cartItemReducer = (state = initialState, action) => {
       return state.filter(cartItem => cartItem.id !== action.payload.id);
     //Eğer id dışarıdan gelen id'ye eşit değilse filtrele ve state i geri dön.
   
+    case REMOVE_ALL_CART:
+       try {
+       return carts
+      } catch (error) {
+        console.log(error);
+      } 
     
+   case FETCH_BOOK:
+      return {...state,books: action.payload}
 
-  }
+  }  
+
   return state;
 };
 
 export default cartItemReducer;
+ */
